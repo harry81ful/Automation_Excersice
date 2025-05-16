@@ -1,0 +1,31 @@
+{
+  "name": "automation_excersice",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "cucumber-js test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/harry81ful/Automation_Excersice.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/harry81ful/Automation_Excersice/issues"
+  },
+  "homepage": "https://github.com/harry81ful/Automation_Excersice#readme",
+  "devDependencies": {
+    "@cucumber/cucumber": "^11.3.0",
+    "@playwright/test": "^1.52.0",
+    "@types/node": "^22.15.18",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3"
+  },
+  "dependencies": {
+    "playwright": "^1.52.0"
+  }
+}
