@@ -3,7 +3,7 @@ Feature: Place order and register at checkout
 Scenario: User browses, adds products to the cart, registers at checkout, and places an order
 
   Given the user is on the home page
-  #And the user adds 2 items to the cart
+  And the user adds 2 items to the cart
   #Then the user navigates to the cart and verifies the order
   #And the user proceeds to checkout
   #Then the user is prompted to register and enters their name and email
