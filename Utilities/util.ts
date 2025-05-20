@@ -21,8 +21,9 @@ export const cvcNumber = "123";
 export const expiryMonth = "12";
 export const expiryYear = "2031";
 export const baseUrl = "https://automationexercise.com/api/";
+export const gender = "Mr";
 
 export const generateUniqueEmailId = (): string => {
-  const firstName = faker.person.firstName(); // Generate a new first name
+  let firstName = faker.person.firstName(); // Generate a new first name
   return `${firstName}${uuidv4()}@gmail.com`;
 };

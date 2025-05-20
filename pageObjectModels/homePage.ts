@@ -1,4 +1,4 @@
-import { Page, Locator } from "@playwright/test";
+import { Page, Locator, expect } from "@playwright/test";
 
 export class homePageElements {
   readonly page: Page;
@@ -7,6 +7,9 @@ export class homePageElements {
   readonly viewProduct2: Locator;
   readonly categoryHeading: Locator;
   readonly allProductList: Locator;
+  readonly homePageHeading: Locator;
+  readonly loggedInAsText: Locator;
+  readonly accountDeletedText: Locator;
 
   constructor(page: Page) {
     this.page = page;
@@ -14,6 +17,11 @@ export class homePageElements {
     this.viewProduct1 = page.locator("a[href='/product_details/1']");
     this.viewProduct2 = page.locator("a[href='/product_details/2']");
     this.categoryHeading = page.locator("h2", { hasText: "Category" });
+    this.homePageHeading = page.locator("div.item.active h1");
+    this.loggedInAsText = page.locator("a", {
+      hasText: "Logged in as",
+    });
+    this.accountDeletedText = page.getByText("Account Deleted!");
   }
 
   //list all the products and choose one of the product to add to cart
@@ -56,18 +64,6 @@ export class homePageElements {
     await menuItem.click();
   }
 
-  //Stepdef implementation
-  // import { homePageElements } from "../pageObjectModels/homePageElements";
-  // import { Given } from "@cucumber/cucumber";
-
-  // Given("I click on the {string} menu item", async function (menuItem: string) {
-  //   const homePage = new homePageElements(this.page);
-  //   await homePage.clickMenuItem(menuItem);
-  // });
-  //Scenario: Navigate through header
-  //   Given I click on the "Products" menu item
-  //   Then I should see the Products page
-
   async viewFirstProduct(page: Page) {
     await this.viewProduct1.waitFor({ state: "visible" });
     await this.viewProduct1.click();
@@ -76,5 +72,9 @@ export class homePageElements {
   async viewSecondProduct(page: Page) {
     await this.viewProduct2.waitFor({ state: "visible" });
     await this.viewProduct2.click();
+  }
+
+  async homePageHeadingText() {
+    await expect(this.homePageHeading).toHaveText("AutomationExercise");
   }
 }
