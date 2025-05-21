@@ -22,6 +22,9 @@ export const expiryMonth = "12";
 export const expiryYear = "2031";
 export const baseUrl = "https://automationexercise.com/api/";
 export const gender = "Mr";
+export const tc2name = "harry81ful";
+export const tc2email = "harry81fu@gmail.com";
+export const tc2password = "Testpass";
 
 export const generateUniqueEmailId = (): string => {
   let firstName = faker.person.firstName(); // Generate a new first name

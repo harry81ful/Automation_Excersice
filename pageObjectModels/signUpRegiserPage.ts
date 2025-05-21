@@ -1,5 +1,11 @@
 import { Page, Locator } from "@playwright/test";
-import { generateUniqueEmailId, firstName, lastName } from "../Utilities/util";
+import {
+  generateUniqueEmailId,
+  firstName,
+  lastName,
+  tc2email,
+  tc2password,
+} from "../Utilities/util";
 
 export class singupPageElements {
   readonly page: Page;
@@ -8,6 +14,9 @@ export class singupPageElements {
   readonly singupButton: Locator;
   readonly newUserText: Locator;
   readonly loginToaccountText: Locator;
+  readonly exisitingUserEmail: Locator;
+  readonly exisitingUserPassword: Locator;
+  readonly loginButton: Locator;
 
   constructor(page: Page) {
     this.page = page;
@@ -18,6 +27,9 @@ export class singupPageElements {
     this.loginToaccountText = page.locator("h2", {
       hasText: "Login to your account",
     });
+    this.exisitingUserEmail = page.locator('[data-qa="login-email"]');
+    this.exisitingUserPassword = page.locator('[data-qa="login-password"]');
+    this.loginButton = page.locator('[data-qa="login-button"]');
   }
 
   async enterName() {
@@ -32,5 +44,11 @@ export class singupPageElements {
   async clickSingupButton() {
     await this.singupButton.waitFor({ state: "visible" });
     await this.singupButton.click();
+  }
+  async exisitingUserLogin() {
+    await this.exisitingUserEmail.waitFor({ state: "visible" });
+    await this.exisitingUserEmail.fill(tc2email);
+    await this.exisitingUserPassword.waitFor({ state: "visible" });
+    await this.exisitingUserPassword.fill(tc2password);
   }
 }
