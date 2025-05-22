@@ -4,7 +4,7 @@ Background:
   Given the user is on navigates to home page
   And clicks on Signup Login button
   Then user should see New User Signup text
-
+  @TC1 @UI
   Scenario: Register a new user with valid details
     Given the user enters a valid name and email
     And clicks on Signup button

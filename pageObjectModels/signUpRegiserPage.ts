@@ -1,4 +1,4 @@
-import { Page, Locator } from "@playwright/test";
+import { Page, Locator, expect } from "@playwright/test";
 import {
   generateUniqueEmailId,
   firstName,
@@ -17,6 +17,7 @@ export class singupPageElements {
   readonly exisitingUserEmail: Locator;
   readonly exisitingUserPassword: Locator;
   readonly loginButton: Locator;
+  readonly loginErorMessage: Locator;
 
   constructor(page: Page) {
     this.page = page;
@@ -30,6 +31,9 @@ export class singupPageElements {
     this.exisitingUserEmail = page.locator('[data-qa="login-email"]');
     this.exisitingUserPassword = page.locator('[data-qa="login-password"]');
     this.loginButton = page.locator('[data-qa="login-button"]');
+    this.loginErorMessage = page.locator("p", {
+      hasText: "Your email or password is incorrect!",
+    });
   }
 
   async enterName() {
@@ -50,5 +54,34 @@ export class singupPageElements {
     await this.exisitingUserEmail.fill(tc2email);
     await this.exisitingUserPassword.waitFor({ state: "visible" });
     await this.exisitingUserPassword.fill(tc2password);
+  }
+
+  async loginRules() {
+    // 1. App-level error message
+    const isAppErrorVisible = await this.loginErorMessage
+      .isVisible()
+      .catch(() => false);
+    if (isAppErrorVisible) {
+      await expect(this.loginErorMessage).toBeVisible();
+      return;
+    }
+
+    // 2. Browser-level native validation (invalid email format)
+    const emailValidationMessage = await this.page.evaluate(() => {
+      const emailInput = document.querySelector(
+        "input[type='email']"
+      ) as HTMLInputElement;
+      emailInput.reportValidity(); // triggers tooltip
+      return emailInput.validationMessage;
+    });
+
+    if (emailValidationMessage && emailValidationMessage.length > 0) {
+      console.log("Native browser validation:", emailValidationMessage);
+      expect(emailValidationMessage).toContain("@");
+      return;
+    }
+
+    // 3. If neither error is visible, fail the test
+    throw new Error("No error message was displayed for invalid login.");
   }
 }

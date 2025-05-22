@@ -43,3 +43,19 @@ Then(
     ).toBeVisible();
   }
 );
+
+When(
+  "user enters wrong {string} and {string}",
+  async function (emaiil, password) {
+    const exisitingUserlogsin = new singupPageElements(pageFixture.page);
+    await exisitingUserlogsin.exisitingUserEmail.waitFor({ state: "visible" });
+    await exisitingUserlogsin.exisitingUserEmail.fill(emaiil);
+    await exisitingUserlogsin.exisitingUserPassword.fill(password);
+  }
+);
+
+Then("user should see error message", async function () {
+  const errorsInLogin = new singupPageElements(pageFixture.page);
+  await pageFixture.page.waitForLoadState();
+  await errorsInLogin.loginRules();
+});
