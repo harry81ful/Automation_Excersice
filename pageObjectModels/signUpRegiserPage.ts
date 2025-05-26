@@ -18,6 +18,7 @@ export class singupPageElements {
   readonly exisitingUserPassword: Locator;
   readonly loginButton: Locator;
   readonly loginErorMessage: Locator;
+  readonly signUpErrorMessage: Locator;
 
   constructor(page: Page) {
     this.page = page;
@@ -33,6 +34,9 @@ export class singupPageElements {
     this.loginButton = page.locator('[data-qa="login-button"]');
     this.loginErorMessage = page.locator("p", {
       hasText: "Your email or password is incorrect!",
+    });
+    this.signUpErrorMessage = page.locator("p", {
+      hasText: "Email Address already exist!",
     });
   }
 
