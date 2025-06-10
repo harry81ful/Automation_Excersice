@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "cucumber-js test"
+    "test": "cucumber-js test",
+    "posttest": "npx ts-node src/helper/report.ts"
   },
   "repository": {
     "type": "git",
@@ -20,8 +21,11 @@
   "homepage": "https://github.com/harry81ful/Automation_Excersice#readme",
   "devDependencies": {
     "@cucumber/cucumber": "^11.3.0",
+    "@cucumber/messages": "^27.2.0",
     "@playwright/test": "^1.52.0",
     "@types/node": "^22.15.18",
+    "allure-cucumberjs": "^3.2.2",
+    "multiple-cucumber-html-reporter": "^3.9.2",
     "ts-node": "^10.9.2",
     "typescript": "^5.8.3"
   },

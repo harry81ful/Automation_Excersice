@@ -3,6 +3,7 @@ import { pageFixture } from "../../../hooks/pageFixture";
 import { homePageElements } from "../../../../pageObjectModels/homePage";
 import { expect } from "playwright/test";
 import { singupPageElements } from "../../../../pageObjectModels/signUpRegiserPage";
+import { customerDetails } from "../../../../Utilities/util";
 
 Given("the user is on navigates to home page", async function () {
   await pageFixture.page.waitForLoadState("networkidle");

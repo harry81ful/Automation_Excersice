@@ -15,7 +15,7 @@ import {
   request,
 } from "@playwright/test";
 import { pageFixture } from "../hooks/pageFixture";
-import { baseUrl } from "../../Utilities/util";
+import { UrlTest } from "../../Utilities/util";
 import { CustomWorld } from "world/world";
 
 setDefaultTimeout(60 * 1000);
@@ -51,12 +51,17 @@ Before(async function (this: CustomWorld, scenario: ITestCaseHookParameter) {
     context = await browser.newContext();
     const page = await context.newPage();
     pageFixture.page = page;
-    await page.goto("https://www.automationexercise.com/");
+    await page.goto(UrlTest);
   }
 });
 
-After(async function (this: CustomWorld) {
+After(async function (this: CustomWorld, pickle) {
   if (!this.isApiTest) {
+    const img = await pageFixture.page.screenshot({
+      path: `../test-result-screenshot/screenshot/${pickle.pickle.name}.png`,
+      type: "png",
+    });
+    await this.attach(img, "image/png");
     await pageFixture.page.close();
     await context.close();
   }

@@ -88,4 +88,17 @@ export class singupPageElements {
     // 3. If neither error is visible, fail the test
     throw new Error("No error message was displayed for invalid login.");
   }
+
+  async signUpDetails(customerDetails: {
+    firstName: string;
+    lastName: string;
+    email: string;
+  }) {
+    await this.nameInputfield.waitFor({ state: "visible" });
+    await this.nameInputfield.fill(
+      customerDetails.firstName + " " + customerDetails.lastName
+    );
+    await this.emailInputfield.waitFor({ state: "visible" });
+    await this.emailInputfield.fill(customerDetails.email);
+  }
 }

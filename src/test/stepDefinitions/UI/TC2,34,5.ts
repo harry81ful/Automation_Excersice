@@ -4,6 +4,7 @@ import { homePageElements } from "../../../../pageObjectModels/homePage";
 import { expect } from "playwright/test";
 import { singupPageElements } from "../../../../pageObjectModels/signUpRegiserPage";
 import { tc2email, tc2name } from "../../../../Utilities/util";
+import { existsSync } from "fs";
 
 When("user enters valid email and password", async function () {
   const exisitingUserlogsin = new singupPageElements(pageFixture.page);
@@ -47,6 +48,7 @@ Given("the user enters a exisiting name and email", async function () {
   const exisitingUserlogsin = new singupPageElements(pageFixture.page);
   await exisitingUserlogsin.nameInputfield.fill(tc2name);
   await exisitingUserlogsin.emailInputfield.fill(tc2email);
+  await exisitingUserlogsin.clickSingupButton();
 });
 
 Then(

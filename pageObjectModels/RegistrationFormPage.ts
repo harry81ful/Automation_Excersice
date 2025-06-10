@@ -1,7 +1,6 @@
 import { Page, Locator } from "@playwright/test";
 import {
   passwordDev,
-  firstName,
   lastName,
   addressLine1,
   gender,
@@ -100,5 +99,9 @@ export class registrationFormPageElements {
   async selectReceiveOffersCheckbox() {
     await this.receiveOffersCheckbox.waitFor({ state: "visible" });
     await this.receiveOffersCheckbox.check();
+  }
+
+  async FillRegistrationForm() {
+    //const fName =  firstName;
   }
 }
