@@ -44,7 +44,7 @@ Before(async function (this: CustomWorld, scenario: ITestCaseHookParameter) {
           browser = await webkit.launch({ headless: false });
           break;
         default:
-          browser = await chromium.launch({ headless: true });
+          browser = await chromium.launch({ headless: false });
       }
     }
 

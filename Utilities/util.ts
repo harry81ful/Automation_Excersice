@@ -31,7 +31,7 @@ export const comments = "This is a comment";
 export const nameOnCard = "Test User";
 export const cardNumber = "123456789101";
 export const cvcNumber = "123";
-
+export const message = faker.lorem.sentence();
 export const baseUrl = "https://automationexercise.com/api/";
 export const gender = "Mr";
 export const tc2name = "harry81ful";
